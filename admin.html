@@ -29,7 +29,7 @@
         <button class="button primary" type="submit">Authenticate <span>↗</span></button>
         <p id="login-error" class="error" role="alert"></p>
       </form>
-      <small class="security-note">Protected by Supabase Auth · HttpOnly session cookies · server-side email allowlist</small>
+      <small class="security-note">Protected by Firebase Authentication · HttpOnly session cookies · server-side email allowlist</small>
     </section>
 
     <section id="dashboard" hidden>
@@ -49,7 +49,7 @@
           <div id="messages" class="message-list"><p class="muted">Loading messages…</p></div>
         </section>
         <section class="panel">
-          <div class="eyebrow">CONTENT MANAGEMENT</div><h2>Add a project</h2>
+          <div class="eyebrow">CONTENT MANAGEMENT</div><h2 id="project-form-title">Add a project</h2>
           <form id="project-form" class="form">
             <label>Project title<input name="title" required minlength="2" maxlength="180"></label>
             <label>URL slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="aurora-6g-wireless"></label>
@@ -59,11 +59,19 @@
             <label>Technology stack<input name="tech_stack" placeholder="Python, FastAPI, PostgreSQL"></label>
             <label>Repository URL<input name="repository_url" type="url" placeholder="https://github.com/..."></label>
             <label>Demo URL<input name="demo_url" type="url" placeholder="https://..."></label>
+            <label>Project image<input name="image" type="file" accept="image/jpeg,image/png,image/webp"></label>
             <div class="checks"><label><input type="checkbox" name="featured"> Featured</label><label><input type="checkbox" name="published" checked> Published</label></div>
-            <button class="button primary" type="submit">Save project ↗</button>
+            <button id="project-submit" class="button primary" type="submit">Save project ↗</button>
+            <button id="cancel-project-edit" class="button ghost" type="button" hidden>Cancel edit</button>
           </form>
         </section>
       </div>
+      <section class="panel project-management">
+        <div class="panel-head"><div><div class="eyebrow">PROJECT MANAGEMENT</div><h2>Existing projects</h2></div></div>
+        <div id="project-list" class="message-list"><p class="muted">Loading projects…</p></div>
+        <button id="load-more-projects" class="button ghost" type="button" hidden>Load more projects</button>
+      </section>
+      <button id="load-more-messages" class="button ghost" type="button" hidden>Load more messages</button>
       <section class="panel analytics">
         <div class="eyebrow">ENGAGEMENT</div><h2>Project views</h2><div id="views" class="views"><p class="muted">Loading analytics…</p></div>
       </section>

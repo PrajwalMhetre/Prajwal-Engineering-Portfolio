@@ -1,0 +1,12 @@
+.live-projects [hidden] {
+  display: none;
+}
+
+.live-projects .work-card img {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  object-fit: cover;
+}
