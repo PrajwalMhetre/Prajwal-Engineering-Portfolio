@@ -1,10 +1,10 @@
-from sqlalchemy import Boolean, DateTime, Integer, String, Text, func, Index
+from sqlalchemy import BigInteger, Boolean, DateTime, String, Text, func, Index
 from sqlalchemy.orm import Mapped, mapped_column
 from backend.app.db import Base
 
 class ContactMessage(Base):
     __tablename__ = "contact_messages"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(254), nullable=False)
     subject: Mapped[str] = mapped_column(String(160), nullable=False)
@@ -16,7 +16,7 @@ class ContactMessage(Base):
 
 class PortfolioProject(Base):
     __tablename__ = "portfolio_projects"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     slug: Mapped[str] = mapped_column(String(100), unique=True, nullable=False, index=True)
     title: Mapped[str] = mapped_column(String(180), nullable=False)
     category: Mapped[str] = mapped_column(String(40), nullable=False, index=True)
@@ -32,7 +32,7 @@ class PortfolioProject(Base):
 
 class ProjectView(Base):
     __tablename__ = "project_views"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     project_slug: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
     referrer: Mapped[str | None] = mapped_column(String(500))
     ip_hash: Mapped[str | None] = mapped_column(String(64))
