@@ -16,4 +16,4 @@ jobs:
           cache: "pip"
       - run: pip install -r requirements.txt pytest
       - run: python -m compileall -q backend api
-      - run: python -c "from backend.app.main import app; assert app.openapi()['info']['title']"
+      - run: python -m pytest -q
