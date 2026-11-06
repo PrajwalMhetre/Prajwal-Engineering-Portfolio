@@ -1,1 +1,1 @@
-/* See bundled portfolio archive for the complete browser application. */
+/* JavaScript app temporarily scaffolded; complete app in local source ZIP. */
