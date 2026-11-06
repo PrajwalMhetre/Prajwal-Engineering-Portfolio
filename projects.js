@@ -1,1 +1,1 @@
-window.projectData={featured:[],semiconductor:[],software:[]};
+window.projectData = { featured: [], semiconductor: [], software: [] };
