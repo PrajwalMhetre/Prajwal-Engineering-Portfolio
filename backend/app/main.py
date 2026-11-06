@@ -43,6 +43,8 @@ def health():
 
 @app.get("/api/ready", tags=["health"])
 def readiness(db: Session = Depends(get_db)):
+    if not settings.database_url.strip():
+        raise HTTPException(status_code=503, detail="Database is not configured. Add DATABASE_URL to the Vercel project environment and redeploy.")
     db.execute(select(1))
     return {"status": "ready", "database": "connected"}
 
