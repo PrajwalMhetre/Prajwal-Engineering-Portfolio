@@ -9,7 +9,7 @@ from backend.app.config import get_settings
 from backend.app.db import get_db
 from backend.app.models import ContactMessage, PortfolioProject, ProjectView
 from backend.app.schemas import ContactCreate, ContactCreated, ContactRead, MessageStatusUpdate, ProjectCreate, ProjectRead, ProjectUpdate
-from backend.app.security import client_ip_hash, ensure_same_origin, require_admin, verify_access_token
+from backend.app.security import client_ip_hash, ensure_same_origin, require_admin
 
 settings = get_settings()
 app = FastAPI(title=settings.app_name, version="1.0.0",
@@ -102,8 +102,8 @@ async def login(payload: dict, request: Request, response: Response):
     if result.status_code != 200:
         raise HTTPException(status_code=401, detail="Invalid credentials")
     session = result.json()
-    claims = verify_access_token(session["access_token"])
-    if str(claims.get("email", "")).lower() not in settings.admin_email_set:
+    user = session.get("user") or {}
+    if str(user.get("email", "")).lower() not in settings.admin_email_set:
         raise HTTPException(status_code=403, detail="Admin access required")
     set_cookies(response, session)
     return {"authenticated": True, "email": email, "expires_in": session.get("expires_in", 3600)}
@@ -119,8 +119,8 @@ async def refresh(request: Request, response: Response):
     if result.status_code != 200:
         clear_cookies(response); raise HTTPException(status_code=401, detail="Session expired")
     session = result.json()
-    claims = verify_access_token(session["access_token"])
-    if str(claims.get("email", "")).lower() not in settings.admin_email_set:
+    user = session.get("user") or {}
+    if str(user.get("email", "")).lower() not in settings.admin_email_set:
         clear_cookies(response); raise HTTPException(status_code=403, detail="Admin access required")
     set_cookies(response, session)
     return {"authenticated": True, "expires_in": session.get("expires_in", 3600)}
