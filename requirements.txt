@@ -1,8 +1,8 @@
 fastapi==0.115.12
-uvicorn[standard]==0.34.3
-SQLAlchemy==2.0.41
-alembic==1.16.2
-psycopg[binary]==3.2.9
+uvicorn==0.34.3
 pydantic-settings==2.10.1
 email-validator==2.2.0
+firebase-admin==6.9.0
+cryptography==48.0.1
 httpx==0.28.1
+python-multipart==0.0.20
