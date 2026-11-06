@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#080b12">
+  <title>Admin Console — Prajwal Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+  <script defer src="admin.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html">P<span>.</span> <small>ENGINEERING PORTFOLIO</small></a>
+      <div class="top-actions"><span id="session-label" class="session-label">ADMIN CONSOLE</span><button id="logout" class="button ghost" hidden>Sign out ↗</button></div>
+    </header>
+
+    <section id="login-panel" class="login-panel">
+      <div class="eyebrow">RESTRICTED AREA / ADMIN ONLY</div>
+      <h1>Welcome<br><span>back.</span></h1>
+      <p>Sign in with one of the two allowlisted administrator accounts. Public registration is not available.</p>
+      <form id="login-form" class="form">
+        <label>Email address<input name="email" type="email" autocomplete="username" required placeholder="admin@example.com"></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8"></label>
+        <button class="button primary" type="submit">Authenticate <span>↗</span></button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+      <small class="security-note">Protected by Supabase Auth · HttpOnly session cookies · server-side email allowlist</small>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="welcome">
+        <div><div class="eyebrow">PRIVATE WORKSPACE</div><h1>Control <span>room.</span></h1><p id="admin-email" class="muted"></p></div>
+        <button id="refresh" class="button ghost">↻ Refresh data</button>
+      </div>
+      <div id="notice" class="notice" role="status" aria-live="polite"></div>
+      <div class="metrics">
+        <article><small>CONTACT MESSAGES</small><strong id="metric-total">—</strong></article>
+        <article><small>NEW MESSAGES</small><strong id="metric-new">—</strong></article>
+        <article><small>PROJECTS TRACKED</small><strong id="metric-projects">—</strong></article>
+      </div>
+      <div class="grid">
+        <section class="panel">
+          <div class="panel-head"><div><div class="eyebrow">INBOX</div><h2>Contact messages</h2></div><select id="message-filter" aria-label="Filter messages"><option value="">All statuses</option><option value="new">New</option><option value="read">Read</option><option value="replied">Replied</option><option value="archived">Archived</option><option value="spam">Spam</option></select></div>
+          <div id="messages" class="message-list"><p class="muted">Loading messages…</p></div>
+        </section>
+        <section class="panel">
+          <div class="eyebrow">CONTENT MANAGEMENT</div><h2>Add a project</h2>
+          <form id="project-form" class="form">
+            <label>Project title<input name="title" required minlength="2" maxlength="180"></label>
+            <label>URL slug<input name="slug" required pattern="[a-z0-9]+(?:-[a-z0-9]+)*" placeholder="aurora-6g-wireless"></label>
+            <label>Category<select name="category" required><option value="semiconductor">Semiconductor</option><option value="software">Software</option><option value="embedded">Embedded</option><option value="wireless">Wireless</option><option value="ai">AI</option><option value="cloud">Cloud</option></select></label>
+            <label>Short summary<textarea name="summary" required minlength="10" maxlength="500" rows="3"></textarea></label>
+            <label>Description<textarea name="description" rows="4" maxlength="12000"></textarea></label>
+            <label>Technology stack<input name="tech_stack" placeholder="Python, FastAPI, PostgreSQL"></label>
+            <label>Repository URL<input name="repository_url" type="url" placeholder="https://github.com/..."></label>
+            <label>Demo URL<input name="demo_url" type="url" placeholder="https://..."></label>
+            <div class="checks"><label><input type="checkbox" name="featured"> Featured</label><label><input type="checkbox" name="published" checked> Published</label></div>
+            <button class="button primary" type="submit">Save project ↗</button>
+          </form>
+        </section>
+      </div>
+      <section class="panel analytics">
+        <div class="eyebrow">ENGAGEMENT</div><h2>Project views</h2><div id="views" class="views"><p class="muted">Loading analytics…</p></div>
+      </section>
+    </section>
+    <footer>© <span id="year"></span> PRAJWAL MHETRE · PRIVATE ADMIN CONSOLE</footer>
+  </main>
+</body>
+</html>
