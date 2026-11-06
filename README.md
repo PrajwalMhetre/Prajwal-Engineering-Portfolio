@@ -1,3 +1,3 @@
-# Prajwal Mhetre Engineering Portfolio
+# Prajwal Mhetre — Engineering Portfolio
 
-Files are maintained in the downloadable source archive.
+Initial repository scaffold. The full source bundle is available from the conversation download.
