@@ -1,0 +1,1 @@
+window.projectData={featured:[],semiconductor:[],software:[]};
